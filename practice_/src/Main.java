@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Day2 day2 = new Day2();
+        Day3 day3 = new Day3();
 
 
 
