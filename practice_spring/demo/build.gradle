@@ -24,7 +24,8 @@ repositories {
 }
 
 dependencies {
-	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //우선 사용안함처리 빌드를위해
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Entity 사용위해 추가 Day3
+	implementation 'com.h2database:h2' // DB없이 동작만가능하게 하기위해 추가 Day3
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
