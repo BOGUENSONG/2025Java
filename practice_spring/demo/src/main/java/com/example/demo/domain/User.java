@@ -29,4 +29,15 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    // Day4 REST API 테스트를 위해 SETTER 추가
+    public void setId(Long id){
+        this.id = id;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
 }
