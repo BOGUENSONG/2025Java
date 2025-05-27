@@ -4,9 +4,11 @@
 package com.example.demo.controller;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
+import com.example.demo.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -33,13 +35,13 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+    public User createUser(@RequestBody UserDto dto){
+        return userService.createUser(dto);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user){ // path variable : URL 파라미터, RequestBody : Body
-        return userService.updateUser(id,user);
+    public User updateUser(@PathVariable Long id, @RequestBody UserDto dto){ // path variable : URL 파라미터, RequestBody : Body
+        return userService.updateUser(id,dto);
     }
 
     @DeleteMapping("/{id}")

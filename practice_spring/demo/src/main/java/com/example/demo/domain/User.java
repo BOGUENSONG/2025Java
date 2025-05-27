@@ -19,7 +19,7 @@ public class User {
         this.name = name;
         this.email = email;
     }
-    //GETTER가 없으면 DB에서 데이터 못가져옴.
+    // GETTER가 없으면 DB에서 데이터 못가져옴.
     public Long getId() {
         return id;
     }

@@ -3,11 +3,13 @@ import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.domain.*;
+import com.example.demo.dto.*;
 
 import java.util.List;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
 
     @Autowired // 생성자가 1개면 Spring 2.6부터는 자동으로 주입해주기때문에 Autowired를 명시 안해줘도되긴함.
@@ -19,14 +21,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User createUser(User user){ // 2. 유저 추가하기 Create
+    public User createUser(UserDto dto){ // 2. 유저 추가하기 Create
+        User user = new User(dto.getName(), dto.getEmail());
         return userRepository.save(user);
     }
 
-    public User updateUser(Long id, User updatedUser){ // 3. 유저 수정하기 Update
+    public User updateUser(Long id, UserDto dto){ // 3. 유저 수정하기 Update
         User user = userRepository.findById(id).orElseThrow( () -> new RuntimeException("User not Found") );
-        user.setName(updatedUser.getName());
-        user.setEmail(updatedUser.getEmail());
+        user.setName(dto.getName());
+        user.setEmail(dto.getEmail());
         return userRepository.save(user);
     }
 
