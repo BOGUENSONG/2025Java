@@ -5,8 +5,11 @@ package com.example.demo.controller;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import com.example.demo.dto.UserDto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -35,8 +38,12 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody UserDto dto){
-        return userService.createUser(dto);
+    public ResponseEntity<?> createUser(@Valid @RequestBody UserDto dto, BindingResult result) {
+        if (result.hasErrors()){
+            return ResponseEntity.badRequest().body(result.getAllErrors()); //Day 6 검증실패 시 400 Error + 에러메시지 보내기
+        }
+        User createdUser = userService.createUser(dto);
+        return ResponseEntity.ok(createdUser); // Day6 ResponseEntity ( 응답을 좀 더 간단하게 수정할 수 있는 함수 )
     }
 
     @PutMapping("/{id}")

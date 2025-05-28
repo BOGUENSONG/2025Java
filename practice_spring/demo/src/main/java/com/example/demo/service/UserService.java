@@ -1,4 +1,5 @@
 package com.example.demo.service;
+import com.example.demo.Exception.UserNotFoundException;
 import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,8 @@ public class UserService {
     }
 
     public User getUserById(Long id){
-        return userRepository.findById(id).orElseThrow( () -> new RuntimeException("User not Found!") );
+        return userRepository.findById(id).orElseThrow( () -> new UserNotFoundException("User not Found!") );
+        //Day6 커스텀 예외클래스 사용.
     }
 
 }
